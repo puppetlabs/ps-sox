@@ -1,8 +1,13 @@
+# Manage gdm.conf
 class sox::gdm(
+  $fixit = false,
 ) {
-  file_line { 'AllowRoot:/etc/X11/gdm/gdm.conf':
-    path  => '/etc/X11/gdm/gdm.conf',
-    line  => 'AllowRoot=false',
-    match => 'AllowRoot=.*',
+  if $::check_gdm == 'Failed' and $fixit {
+    ini_setting { 'gdm.conf AllowRoot=false:':
+      path    => '/etc/X11/gdm/gdm.conf',
+      setting => 'AllowRoot',
+      section => '',
+      value   => 'false',
+    }
   }
 }
