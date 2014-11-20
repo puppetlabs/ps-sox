@@ -1,0 +1,14 @@
+{
+  "name": "zack-sox",
+  "version": "1.0.0",
+  "author": "zack",
+  "summary": "Sox Compliance Module",
+  "license": "Apache 2.0",
+  "source": "git@",
+  "issues_url": "http://github.com/issues",
+  "project_page": "http://github.com",
+  "dependencies": [
+    {"version_requirement":">= 1.0.0","name":"puppetlabs-stdlib"}
+  ]
+}
+
