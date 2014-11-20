@@ -1,5 +1,5 @@
-# Manage check_root_login_console.conf
-class sox::check_root_login_console(
+# Manage /etc/securetty
+class sox::root_login_console(
   $fixit = false,
 ) {
   if $fixit {
