@@ -1,8 +1,8 @@
-# Manage gui_login.conf
+# Manage /etc/inittab
 class sox::gui_login(
   $fixit = false,
 ) {
-  if $::gui_login == 'Failed' and $fixit {
+  if $fixit {
     augeas { "inittab_3":
       context => "/files/etc/inittab",
       changes => [
