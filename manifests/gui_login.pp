@@ -4,9 +4,9 @@ class sox::gui_login(
 ) {
   if $fixit {
     augeas { "inittab_3":
-      context => "/files/etc/inittab",
+      context => "/files/etc/inittab/id",
       changes => [
-        "runlevels 3",
+        "set runlevels 3",
       ],
     }
   }
