@@ -1,4 +1,4 @@
-Facter.add(:check_gdm) do
+Facter.add(:check_keyserv) do
   confine :kernel => 'Linux'
   setcode do
     if File.exist? '/etc/default/keyserv'
