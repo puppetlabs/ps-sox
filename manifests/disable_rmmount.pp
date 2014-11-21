@@ -1,10 +1,10 @@
-# Manage check_root_login_console.conf
+# Manage /etc/auto.misc
 class sox::check_root_login_console(
   $fixit = false,
 ) {
   if $fixit {
-    augeas { "securetty":
-      context => "/files/etc/securetty",
+    augeas { "/etc/auto.misc":
+      context => "/etc/auto.misc",
       changes => [
         "rm *[.=~ regexp('^(ttyp|pts).*$')]",
       ],
