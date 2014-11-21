@@ -12,5 +12,26 @@ class sox::user_policy(
         "set PASS_WARN_AGE 14",
       ],
     }
+
+    augeas { "/files/etc/pam.d/system-auth/01" :
+      context  => "/files/etc/pam.d/system-auth",
+      changes  => [
+        "ins 01 after *[type='auth'][control = 'required'][module='pam_deny.so']",
+        "set 01/type auth",
+        "set 01/control required",
+        "set 01/module pam_unix.so",
+      ],
+      onlyif   => "match *[type = 'auth'][control = 'required'][module = 'pam_unix.so'] size == 0",
+    }
+
+    augeas { "pam.d/system-auth" :
+      context  => "/files/etc/pam.d/system-auth/*[type = 'auth'][control = 'required'][module = 'pam_unix.so']"
+      changes  => [
+        "rm argument",
+        "set argument[1] nullok",
+        "set argument[2] try_first_pass",
+      ],
+      require  => Augeas["/files/etc/pam.d/system-auth/01"],
+    }
   }
 }
