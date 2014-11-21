@@ -12,7 +12,7 @@ class sox::user_policy(
         "set PASS_WARN_AGE 14",
       ],
     }
-
+    # pol2
     augeas { "/files/etc/pam.d/system-auth/01" :
       context  => "/files/etc/pam.d/system-auth",
       changes  => [
@@ -32,6 +32,9 @@ class sox::user_policy(
         "set argument[2] try_first_pass",
       ],
       require  => Augeas["/files/etc/pam.d/system-auth/01"],
+    }
+    sox::user_policy::pol3 {['/etc/pam.d/sshd','/etc/pam.d/vsftpd','/etc/pam.d/login']:
+      tag => 'foo',
     }
   }
 }
