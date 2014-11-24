@@ -12,7 +12,7 @@ class sox::syslog(
     }
 
     augeas { "authpriv.notice_/var/log/secure":
-      context    => '/files/etc/rsyslog.conf',
+      context    => '/files/etc/syslog.conf',
       changes => [
         'set entry[last()+1]/selector/facility authpriv.notice',
         'set entry[last()]/action/file /var/log/secure',
