@@ -1,4 +1,4 @@
-# Manage /etc/inittab
+# Manage /files/etc/login.defs 
 class sox::user_policy(
   $fixit = false,
 ) {

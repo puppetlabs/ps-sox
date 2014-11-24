@@ -31,7 +31,7 @@ Facter.add(:check_user_policy) do
          aug.exists("[argument[1] = 'deny=3'][argument[2] = 'onerr=fail']") &&
          check[2] == 'Passed'
       end
-      status == 'Passed' if check.include?('Passed')
+      status == 'Failed' if check.include?('Failed')
     end
     status
   end
