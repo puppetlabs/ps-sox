@@ -15,4 +15,4 @@ tmtags
 tags
 
 ## Gemfile
-.Gemfile.lock
+.Gemfile.*
