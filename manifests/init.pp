@@ -29,13 +29,39 @@
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Zack Smith <zack@puppetlabs.com>
 #
 # === Copyright
 #
 # Copyright 2014 Your name here, unless otherwise noted.
 #
-class sox {
+class sox(
+  $exclude_classes = [],
+) {
 
+  validate_array($exclude_classes)
 
+  $default_classes = $::osfamily ? {
+      'RedHat' => [
+          'sox::6000tcp',
+          'sox::disable_rmmount',
+          'sox::fstab',
+          'sox::gdm',
+          'sox::gui_login',
+          'sox::keyserv',
+          'sox::loginlog',
+          'sox::root_login_console',
+          'sox::sendmail',
+          'sox::singleuser',
+          'sox::su',
+          'sox::sulog',
+          'sox::syslog',
+          'sox::user_policy',
+          'sox::xfs',
+      ],
+  }
+
+  $enabled_classes = difference($default_classes,$exclude_classes)
+
+  include $enabled_classes
 }
