@@ -1,9 +1,10 @@
-# Manage /etc/inittab
+# Manage /etc/syslog.conf
 class sox::syslog(
   $fixit = false,
 ) {
   if $fixit {
 
+    # Ensure the service is in the catalog if this an apply
     if ! defined(Service['syslogd'] {
         service {'syslogd':
           ensure => 'running',
@@ -11,7 +12,7 @@ class sox::syslog(
         }
     }
 
-    augeas { "authpriv.notice_/var/log/secure":
+    augeas { "authpriv.notice_/var/log/secure_/etc/syslog.conf":
       context    => '/files/etc/syslog.conf',
       changes => [
         'set entry[last()+1]/selector/facility authpriv.notice',
