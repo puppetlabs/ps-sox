@@ -1,13 +1,14 @@
-# Manage keyserv.conf
+#http://www.stigviewer.com/stig/solaris_11_x86/2014-04-23/finding/V-48089
 class sox::keyserv(
   $fixit = false,
 ) {
   if $::check_keyserv == 'Failed' and $fixit {
-    ini_setting { 'keyserv.conf AllowRoot=false:':
-      path    => '/etc/X11/keyserv/keyserv.conf',
-      setting => 'AllowRoot',
-      section => '',
-      value   => 'false',
+    shellvar { '/etc/default/keyserv:ENABLE_NOBODY_KEYS=NO':
+      ensure   => present,
+      target   => '/etc/default/keyserv',
+      variable => 'ENABLE_NOBODY_KEYS',
+      value    => 'NO',
+      tag      => 'SV-60961r1_rule',
     }
   }
 }
