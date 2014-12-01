@@ -3,8 +3,9 @@ SYS_GID  = 3
 Facter.add(:check_loginlog) do
   confine :kernel => 'Linux'
   setcode do
+    status = 'Passed'
     if File.exist? '/var/adm/loginlog'
-      # Assume failure
+      # Assume failure for sub checks
       check[0],check[1],check[2] = 'Failed','Failed','Failed'
 
       # Run through checks
@@ -14,6 +15,7 @@ Facter.add(:check_loginlog) do
       check[2] = 'Passed' if loginlog.gid == SYS_GID
       status = 'Failed' if check.include?('Failed')
     else
+      # If file does not exist then check passes
       status = 'Passed'
     end
     status
