@@ -25,7 +25,7 @@ class sox::user_policy(
     }
 
     augeas { "pam.d/system-auth" :
-      context  => "/files/etc/pam.d/system-auth/*[type = 'auth'][control = 'required'][module = 'pam_unix.so']"
+      context  => "/files/etc/pam.d/system-auth/*[type = 'auth'][control = 'required'][module = 'pam_unix.so']",
       changes  => [
         "rm argument",
         "set argument[1] nullok",
