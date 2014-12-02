@@ -14,7 +14,7 @@ Facter.add(:check_fileperms) do
     checks = {}
     files.each do |file|
         next unless File.exist?(file)
-        if File.stat(file).mode == '100600'
+        if sprintf("%o", File.stat(file).mode) == '100600'
             checks[file] = 'Passed'
          else
             checks[file] = 'Failed'
