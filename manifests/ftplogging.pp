@@ -15,6 +15,11 @@ class sox::ftplogging (
             subscribe => Augeas['vsftpd logging'],
           }
         }
+        else {
+          Service <| title = 'vsftpd' |> {
+            subscribe +> Augeas['vsftpd logging'],
+          }
+        }
       }
 
       '4': {
