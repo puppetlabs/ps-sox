@@ -5,7 +5,7 @@ class sox::syslog(
   if $fixit {
 
     # Ensure the service is in the catalog if this an apply
-    if ! defined(Service['syslogd'] {
+    if ! defined(Service['syslogd']) {
         service {'syslogd':
           ensure => 'running',
           enable => true,
