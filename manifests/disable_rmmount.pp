@@ -1,5 +1,5 @@
 # Manage /etc/auto.misc
-class sox::check_root_login_console(
+class sox::disable_rmmount(
   $fixit = false,
 ) {
   if $fixit {
@@ -8,6 +8,7 @@ class sox::check_root_login_console(
       changes => [
         "rm *[.=~ regexp('^(ttyp|pts).*$')]",
       ],
+      tags => '13.3',
     }
   }
 }
