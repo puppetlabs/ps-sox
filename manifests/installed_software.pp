@@ -1,6 +1,8 @@
 class sox::installed_software (
   $fixit = true,
 ) {
+  validate_bool($fixit)
+
   if $fixit {
     $packages = [
       'sudo',
