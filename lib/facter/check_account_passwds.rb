@@ -4,6 +4,7 @@ Facter.add(:check_account_passwds) do
   confine :kernel => 'Linux'
   confine :operatingsystemmajrelease => ['5','6']
   setcode do
+    checks = {}
     # Loop through /etc/passwd
     Etc.passwd do |user|
       l = `passwd -S #{user.name}`.split
@@ -28,6 +29,7 @@ Facter.add(:check_account_passwds) do
   confine :kernel => 'Linux'
   confine :operatingsystemmajrelease => ['7','2','3','4']
   setcode do
+    checks = {}
     # Loop through /etc/passwd
     Etc.passwd do |user|
       l = `passwd -S #{user.name}`.split
