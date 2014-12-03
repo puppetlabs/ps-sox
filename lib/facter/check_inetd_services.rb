@@ -51,8 +51,7 @@ fix_services = []
 
 ## Method to determine if the service even exists by checking with 'chkconfig'
 def service_exists?(service)
-  return true if system("/sbin/chkconfig --list #{service} >/dev/null 2>&1")
-  false
+  system("/sbin/chkconfig --list #{service} >/dev/null 2>&1")
 end
 
 ## Method to check if a service is enabled in a certain runlevel or via xinetd
