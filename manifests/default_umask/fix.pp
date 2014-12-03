@@ -1,6 +1,6 @@
 define sox::default_umask::fix (
   $file  = $title,
-  $umask = '002',
+  $umask = '022',
 ) {
   validate_absolute_path($file)
   validate_re($umask, '\d{3}', 'umask must be 3 digits')
