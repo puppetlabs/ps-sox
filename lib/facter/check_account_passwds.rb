@@ -10,6 +10,7 @@ Facter.add(:check_account_passwds) do
       l = `passwd -S #{user.name}`.split
       if l[1] =~ /(NL|LK|PS)/
         checks[user.name] = 'Passed'
+        troubled_accounts << user.name
       else
         checks[user.name] = 'Failed'
       end
@@ -35,6 +36,7 @@ Facter.add(:check_account_passwds) do
       l = `passwd -S #{user.name}`.split
       if l[1] =~ /.*Empty password.*/
         checks[user.name] = 'Failed'
+        troubled_accounts << user.name
       else
         checks[user.name] = 'Passed'
       end
