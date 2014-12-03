@@ -14,6 +14,8 @@ class sox::default_umask (
   $fixit = true,
 ) {
 
+  tag '5.1', 'SV-37350r1_rule'
+
   $files = [
     '/etc/bashrc',
     '/etc/profile',
