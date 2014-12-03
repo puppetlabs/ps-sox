@@ -69,7 +69,7 @@ def service_enabled?(service,runlevel=check_runlevel)
   if status =~ /:/
     ## init
     ## Get the runlevels into an array
-    chkconfig = status.split(' ')
+    chkconfig = status.split
     chkconfig.shift
     return true if chkconfig[runlevel] =~ /:on/
   else
