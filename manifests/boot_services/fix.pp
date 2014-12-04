@@ -29,7 +29,7 @@
 ##     matching the title, which could conflict with what's described
 ##     elsewhere.
 ##
-define sox::check_boot_services::fix (
+define sox::boot_services::fix (
   $status,
   $service = $title,
   $warn    = true,

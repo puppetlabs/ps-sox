@@ -4,7 +4,7 @@
 ## E.g. {"sshd":"failed","postfix":"investigate"}
 ## If a service is tagged with 'investigate', we don't want to "fix" it.
 ##
-class sox::check_boot_services (
+class sox::boot_services (
   $fixit = true,
   $force = false,
   $warn  = true,
@@ -16,7 +16,7 @@ class sox::check_boot_services (
 
   $services = keys(parsejson($::fix_boot_services))
 
-  sox::check_boot_services::fix { $services:
+  sox::boot_services::fix { $services:
     status => parsejson($::fix_boot_services),
     force  => $force,
     warn   => $warn,
