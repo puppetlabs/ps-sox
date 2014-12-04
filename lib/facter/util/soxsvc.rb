@@ -7,10 +7,15 @@ module Facter::Util::SOXSvc
   ## Method to check if a service is enabled in a certain runlevel or via xinetd
   ## If it's xinetd, the runlevel doesn't really matter.
   def self.service_enabled?(service,runlevel=2)
-    runlevel = runlevel.to_i
-
     ## Get the status line from 'chkconfig'
     status = Facter::Util::Resolution.exec("/sbin/chkconfig --list #{service}")
+
+    if runlevel == 'any'
+      return true if status =~ /:on|\bon$/
+      return false
+    end
+
+    runlevel = runlevel.to_i
 
     ## If there's a colon in the output, it's highly likely not an xinetd service
     ## xinetd services look like:
