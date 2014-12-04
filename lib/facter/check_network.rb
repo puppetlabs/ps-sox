@@ -1,6 +1,7 @@
 require 'augeas'
 Facter.add(:check_network) do
   confine :kernel => 'Linux'
+  confine :sox_network => 'enabled'
   setcode do
     sysctl_values = {
       'net.ipv4.tcp_max_syn_backlog'               => '4096',

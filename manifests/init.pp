@@ -37,6 +37,7 @@
 #
 class sox(
   $exclude_classes = [],
+  $fix             = false,
 ) {
 
   validate_array($exclude_classes)
@@ -64,4 +65,27 @@ class sox(
   $enabled_classes = difference($default_classes,$exclude_classes)
 
   include $enabled_classes
+
+  # Generate a series of sox_ facts i.e. sox_xfs and set value to "enabled"
+  # The check_* facts will conditionally confine themselves base on these sister facts
+  sox::fact { $enabled_classes:
+    ensure  => 'present',
+    find    => 'sox::',
+    replace => 'sox_',
+    value   => 'enabled',
+  }
+
+  # Clean up any excluded facts
+  sox::fact { $exclude_classes:
+    ensure  => 'absent',
+    find    => 'sox::',
+    replace => 'sox_',
+    value   => 'enabled',
+  }
+
+  # This fact controls the defaults for all the classes $fixit param
+  sox::fact{ 'sox_fix':
+    value => $fix,
+  }
+
 }
