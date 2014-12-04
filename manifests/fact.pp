@@ -1,5 +1,6 @@
 define sox::fact(
   $value,
+  $ensure   = 'present',
   $find     = undef,
   $replace  = undef,
   $filename = $name,
@@ -31,7 +32,7 @@ define sox::fact(
   }
 
   file { "/etc/facter/facts.d/${filename}.yaml":
-    ensure  => file,
+    ensure  => $ensure,
     content => template("${module_name}/facts_d.erb"),
   }
 
