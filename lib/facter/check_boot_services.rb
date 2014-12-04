@@ -38,8 +38,6 @@
 ##     are deemed to be "investigated"
 ##     E.g. {"sshd":"failed","postfix":"investigate"}
 ##
-## This is sort of confusing.
-##
 
 require 'facter/util/soxsvc'
 require 'json'
