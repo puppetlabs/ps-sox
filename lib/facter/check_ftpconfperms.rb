@@ -1,5 +1,6 @@
-ROOT_UID = 0
-ROOT_GID = 0
+root_uid = 0
+root_gid = 0
+
 Facter.add(:check_ftpconfperms) do
   confine :kernel => 'Linux'
   confine :osfamily => 'RedHat'
@@ -18,8 +19,8 @@ Facter.add(:check_ftpconfperms) do
       ftpconf = File.stat(file)
       if
         ( "%o" % ftpconf.mode ) == '100600' &&
-        ftpconf.uid == ROOT_UID &&
-        ftpconf.gid == ROOT_GID &&
+        ftpconf.uid == root_uid &&
+        ftpconf.gid == root_gid &&
         checks[file] = 'Passed'
       else
         checks[file] = 'Failed'
