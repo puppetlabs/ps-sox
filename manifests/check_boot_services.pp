@@ -6,10 +6,19 @@
 ##
 class sox::check_boot_services (
   $fixit = true,
+  $force = false,
+  $warn  = true,
 ) {
+
+  validate_bool($fixit)
+  validate_bool($force)
+  validate_bool($warn)
+
   $services = keys(parsejson($::fix_boot_services))
 
   sox::check_boot_services::fix { $services:
     status => parsejson($::fix_boot_services),
+    force  => $force,
+    warn   => $warn,
   }
 }
