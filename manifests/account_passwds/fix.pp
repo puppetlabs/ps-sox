@@ -1,3 +1,4 @@
+# This is used by disable_accounts.pp and account_passwds.pp
 define sox::account_passwds::fix (
   $warn        = true,
   $force       = false,
