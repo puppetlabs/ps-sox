@@ -1,6 +1,8 @@
 ## Fact to check whether certain services are enabled via chkconfig.
 ## Currently supports RedHat family < 7 (doesn't support systemd).
 
+require 'facter/util/soxsvc'
+
 ## What runlevel to check
 check_runlevel = 2
 
@@ -49,43 +51,14 @@ services = [
 ## fact to report them.
 fix_services = []
 
-## Method to determine if the service even exists by checking with 'chkconfig'
-def service_exists?(service)
-  system("/sbin/chkconfig --list #{service} >/dev/null 2>&1")
-end
-
-## Method to check if a service is enabled in a certain runlevel or via xinetd
-## If it's xinetd, the runlevel doesn't really matter.
-def service_enabled?(service,runlevel=check_runlevel)
-  runlevel = runlevel.to_i
-
-  ## Get the status line from 'chkconfig'
-  status = Facter::Util::Resolution.exec("/sbin/chkconfig --list #{service}")
-
-  ## If there's a colon in the output, it's highly likely not an xinetd service
-  ## xinetd services look like:
-  ##   rsync        on
-  if status =~ /:/
-    ## init
-    ## Get the runlevels into an array
-    chkconfig = status.split
-    chkconfig.shift
-    return true if chkconfig[runlevel] =~ /:on/
-  else
-    ## xinet
-    return true if status =~ /\bon$/
-  end
-  return false
-end
-
 Facter.add(:check_inetd_services) do
   confine :osfamily => 'RedHat'
   confine :operatingsystemmajrelease => ['2','3','4','5','6']
   setcode do
     result = []
     services.each do |service|
-      if service_exists?(service)
-        if service_enabled?(service,check_runlevel)
+      if Facter::Util::SOXSvc.service_exists?(service)
+        if Facter::Util::SOXSvc.service_enabled?(service,check_runlevel)
           fix_services << service
           result << 'Failed'
         else
