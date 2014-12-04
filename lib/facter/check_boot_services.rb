@@ -50,6 +50,11 @@ in_dmz = false
 ## This (large) hash contains the services from 'check_boot_services.conf'
 ## Previously, this was a pipe-separated list of services and what their
 ## state was for dmz or int.  This should eventually be moved out of this file.
+##
+## This hash is made up of migrated data from 'check_boot_services.conf',
+## which was a pipe-separated value file.  It's converted to a hash so that we
+## can be more flexible with it (easier) in the future.  E.g. moving this data
+## into an external YAML file.
 services = {
   'acpid' => {
     :int => {
