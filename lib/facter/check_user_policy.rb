@@ -3,6 +3,7 @@ Facter.add(:check_user_policy) do
   confine :kernel   => 'Linux'
   confine :likewise => 'missing'
   setcode do
+    check = []
     # Assume failure as file must exist with line to pass
     check[0],check[1],check[2] = 'Failed','Failed','Failed'
     Augeas::open do |aug|
@@ -31,7 +32,11 @@ Facter.add(:check_user_policy) do
          aug.exists("[argument[1] = 'deny=3'][argument[2] = 'onerr=fail']") &&
          check[2] == 'Passed'
       end
-      status = 'Failed' if check.include?('Failed')
+      if check.include?('Failed')
+        status = 'Failed'
+      else
+        status = 'Passed'
+      end
     end
     status
   end
