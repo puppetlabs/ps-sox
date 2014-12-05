@@ -14,11 +14,13 @@ class sox::boot_services (
   validate_bool($force)
   validate_bool($warn)
 
-  $services = keys(parsejson($::fix_boot_services))
+  if $::fix_boot_services {
+    $services = keys(parsejson($::fix_boot_services))
 
-  sox::boot_services::fix { $services:
-    status => parsejson($::fix_boot_services),
-    force  => $force,
-    warn   => $warn,
+    sox::boot_services::fix { $services:
+      status => parsejson($::fix_boot_services),
+      force  => $force,
+      warn   => $warn,
+    }
   }
 }

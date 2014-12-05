@@ -1,6 +1,6 @@
 # https://forge.puppetlabs.com/fiddyspence/sysctl
 # As this was the sysctl module choosen over augeasproviders its modeled here
-class sox::check_network(
+class sox::network(
     $fixit = false,
 ) {
 
