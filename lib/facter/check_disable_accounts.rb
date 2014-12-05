@@ -77,19 +77,19 @@ Facter.add(:check_disable_accounts) do
       next unless DISABLED_ACCOUNTS.include? user.name
       l = `passwd -S #{user.name}`.split
       if l.last =~ /.*(locked|Alternate authentication).*/i
+        checks[user.name] = 'Passed'
+      else
         checks[user.name] = 'Failed'
         troubled_accounts << user.name
-      else
-        checks[user.name] = 'Passed'
       end
     end
 
-     ## Return 'failed' if any of the packages are not installed
-     if checks.detect {|k,v| v == 'Failed'}
-       'Failed'
-     else
-       'Passed'
-     end
+   ## Return 'failed' if any of the packages are not installed
+   if checks.detect {|k,v| v == 'Failed'}
+     'Failed'
+   else
+     'Passed'
+   end
 
   end
 end
