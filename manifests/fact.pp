@@ -31,7 +31,7 @@ define sox::fact(
     }
   }
 
-  file { "/etc/facter/facts.d/${filename}.yaml":
+  file { "/etc/facter/facts.d/${fact_name}.yaml":
     ensure  => $ensure,
     content => template("${module_name}/facts_d.erb"),
   }
