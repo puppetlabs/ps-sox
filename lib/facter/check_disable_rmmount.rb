@@ -1,5 +1,5 @@
 Facter.add(:check_disable_rmmount) do
-  confine :sox_network => 'enabled'
+  confine :sox_disable_rmmount => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     if File.exist? '/etc/auto.misc'

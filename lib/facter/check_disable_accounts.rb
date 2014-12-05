@@ -39,7 +39,7 @@ require 'etc'
  ]
 troubled_accounts = []
 Facter.add(:check_disable_accounts) do
-  confine :sox_network => 'enabled'
+  confine :sox_disable_accounts => 'enabled'
   confine :kernel => 'Linux'
   confine :operatingsystemmajrelease => ['5','6']
   setcode do
@@ -96,7 +96,7 @@ Facter.add(:check_disable_accounts) do
 end
 
 Facter.add(:fix_disable_accounts) do
-  confine :sox_network => 'enabled'
+  confine :sox_disable_accounts => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     troubled_accounts.join(',')

@@ -11,7 +11,7 @@ require 'augeas'
 require 'facter/util/soxsvc'
 
 Facter.add(:check_ftplogging) do
-  confine :sox_network => 'enabled'
+  confine :sox_ftplogging => 'enabled'
   confine :kernel => 'Linux'
   confine :operatingsystemmajrelease => ['5','6']
   setcode do
@@ -36,7 +36,7 @@ Facter.add(:check_ftplogging) do
 end
 
 Facter.add(:check_ftplogging) do
-  confine :sox_network => 'enabled'
+  confine :sox_ftplogging => 'enabled'
   confine :kernel => 'Linux'
   confine :operatingsystemmajrelease => ['2','4','7']
 

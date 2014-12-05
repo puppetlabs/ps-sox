@@ -3,7 +3,7 @@ root_gid = 0
 fix_ftpconfperms = []
 
 Facter.add(:check_ftpconfperms) do
-  confine :sox_network => 'enabled'
+  confine :sox_ftpconfperms => 'enabled'
   confine :kernel => 'Linux'
   confine :osfamily => 'RedHat'
   confine :operatingsystemmajrelease => ['2','4','5','6','7']
@@ -39,7 +39,7 @@ Facter.add(:check_ftpconfperms) do
 end
 
 Facter.add(:fix_ftpconfperms) do
-  confine :sox_network => 'enabled'
+  confine :sox_ftpconfperms => 'enabled'
   setcode do
     fix_ftpconfperms.join(',')
   end

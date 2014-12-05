@@ -1,6 +1,6 @@
 failed_files = []
 Facter.add(:check_fileperms) do
-  confine :sox_network => 'enabled'
+  confine :sox_fileperms => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     files = [
@@ -33,7 +33,7 @@ Facter.add(:check_fileperms) do
 end
 
 Facter.add(:fix_fileperms) do
-  confine :sox_network => 'enabled'
+  confine :sox_fileperms => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     failed_files.join(',')
