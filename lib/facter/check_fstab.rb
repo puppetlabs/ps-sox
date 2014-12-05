@@ -12,7 +12,9 @@ def match_option?(params)
       matches.each do |match|
         aug.context = match
         # Skip over any excluded files from our parms
-        next if params[:excluded].include? aug.get('file')
+        if params[:excluded]
+          next if params[:excluded].include? aug.get('file')
+        end
 
         # Check for single option args (defaults) or multi i.e. (gid=5)
         options = aug.match('opt[*]|opt')
@@ -63,7 +65,7 @@ Facter.add(:check_fstab_nsuid) do
   setcode do
     params = {
       :key      => 'file',
-      :values   => ['cdrom','floppy'],
+      :values   => ['.*\/cdrom','.*\/floppy'],
       :required => ['nodevices','nodevices'],
     }
     # Return 'Failed' if any of the checks were failed
