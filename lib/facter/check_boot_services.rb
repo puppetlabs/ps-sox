@@ -998,6 +998,7 @@ services = {
 fix_boot_services = {}
 
 Facter.add(:check_boot_services) do
+  confine :sox_boot_services => 'enabled'
   confine :osfamily => 'RedHat'
   confine :operatingsystemmajrelease => ['2','3','4','5','6']
   result = []
@@ -1070,6 +1071,7 @@ end
 ## E.g.
 ## {"sshd":"failed","postfix":"investigate"}
 Facter.add(:fix_boot_services) do
+  confine :sox_boot_services => 'enabled'
   confine :osfamily => 'RedHat'
   confine :operatingsystemmajrelease => ['2','3','4','5','6']
   setcode do

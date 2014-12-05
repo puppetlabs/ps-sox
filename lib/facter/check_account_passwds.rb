@@ -1,6 +1,7 @@
 require 'etc'
 troubled_accounts = []
 Facter.add(:check_account_passwds) do
+  confine :sox_account_passwds => 'enabled'
   confine :kernel => 'Linux'
   confine :operatingsystemmajrelease => ['5','6']
   setcode do
@@ -27,6 +28,7 @@ Facter.add(:check_account_passwds) do
 end
 
 Facter.add(:check_account_passwds) do
+  confine :sox_account_passwds => 'enabled'
   confine :kernel => 'Linux'
   confine :operatingsystemmajrelease => ['7','2','3','4']
   setcode do
@@ -53,6 +55,7 @@ Facter.add(:check_account_passwds) do
 end
 
 Facter.add(:fix_account_passwds) do
+  confine :sox_account_passwds => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     troubled_accounts.join(',')

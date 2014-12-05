@@ -1,5 +1,6 @@
 fix_root_login_console = []
 Facter.add(:check_root_login_console) do
+  confine :sox_root_login_console => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     if File.exist? '/etc/securetty'
@@ -26,6 +27,7 @@ Facter.add(:check_root_login_console) do
 end
 
 Facter.add(:fix_root_login_console) do
+  confine :sox_root_login_console => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     fix_root_login_console.join(',')

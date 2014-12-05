@@ -22,6 +22,7 @@ UMASK='022'
 fix_umasks = []
 
 Facter.add(:check_default_umask) do
+  confine :sox_default_umask => 'enabled'
   setcode do
 
     ## This array contains the absolute path to any files that we want to check
@@ -56,6 +57,7 @@ Facter.add(:check_default_umask) do
 end
 
 Facter.add(:fix_default_umask) do
+  confine :sox_default_umask => 'enabled'
   setcode do
     fix_umasks.join(',')
   end

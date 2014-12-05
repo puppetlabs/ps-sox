@@ -4,6 +4,7 @@ require 'augeas'
 fix_user_policy = []
 
 Facter.add(:check_user_policy) do
+  confine :sox_user_policy => 'enabled'
   confine :kernel   => 'Linux'
   confine :likewise => 'missing'
   setcode do
@@ -62,6 +63,7 @@ Facter.add(:check_user_policy) do
 end
 
 Facter.add(:fix_user_policy) do
+  confine :sox_user_policy => 'enabled'
   confine :kernel   => 'Linux'
   confine :likewise => 'missing'
   setcode do

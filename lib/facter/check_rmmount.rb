@@ -1,4 +1,5 @@
 Facter.add(:check_rmmount) do
+  confine :sox_rmmount => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     if File.exist? '/etc/rmmount.conf'
