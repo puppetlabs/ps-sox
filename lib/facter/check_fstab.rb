@@ -65,7 +65,7 @@ Facter.add(:check_fstab_nsuid) do
   setcode do
     params = {
       :key      => 'file',
-      :values   => ['cdrom','floppy'],
+      :values   => ['.*\/cdrom','.*\/floppy'],
       :required => ['nodevices','nodevices'],
     }
     # Return 'Failed' if any of the checks were failed
