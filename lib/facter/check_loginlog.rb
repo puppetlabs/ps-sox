@@ -1,5 +1,6 @@
 ROOT_UID = 0
 SYS_GID  = 3
+check = []
 Facter.add(:check_loginlog) do
   confine :kernel => 'Linux'
   setcode do

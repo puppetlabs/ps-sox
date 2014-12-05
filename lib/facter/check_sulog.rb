@@ -1,3 +1,4 @@
+check = []
 Facter.add(:check_sulog) do
   confine :kernel => 'Linux'
   setcode do
@@ -8,16 +9,20 @@ Facter.add(:check_sulog) do
         file.each_line do |line|
           # Skip any comments in the file
           next if line =~ /^#.*$/
-          # If the line is matched break out and pass
-          if line =~ /^SULOG=\/var\/adm\/sulog$/
-            check[0] = 'Passed'
-            break
-          end
+            # If the line is matched break out and pass
+            if line =~ /^SULOG=\/var\/adm\/sulog$/
+              check[0] = 'Passed'
+          break
+            end
         end
       end
-    su = File.stat('/etc/default/su')
-    check[1] = 'Passed' if ( "%o" % su.mode ) == '100600'
-    'Failed' if check.include?('Failed')
+      su = File.stat('/etc/default/su')
+      check[1] = 'Passed' if ( "%o" % su.mode ) == '100600'
+      if check.include?('Failed')
+        'Failed'
+      else
+        'Passed'
+      end
     else
       # If file does not exist we fail the test
       'Failed'

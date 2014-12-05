@@ -1,5 +1,6 @@
 root_uid = 0
 root_gid = 0
+fix_ftpconfperms = []
 
 Facter.add(:check_ftpconfperms) do
   confine :kernel => 'Linux'
@@ -23,6 +24,7 @@ Facter.add(:check_ftpconfperms) do
         ftpconf.gid == root_gid &&
         checks[file] = 'Passed'
       else
+        fix_ftpconfperms << file
         checks[file] = 'Failed'
       end
     end
@@ -32,5 +34,11 @@ Facter.add(:check_ftpconfperms) do
     else
       'Passed'
     end
+  end
+end
+
+Facter.add(:fix_ftpconfperms) do
+  setcode do
+    fix_ftpconfperms.join(',')
   end
 end

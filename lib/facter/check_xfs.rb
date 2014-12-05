@@ -1,7 +1,7 @@
 Facter.add(:check_xfs) do
   confine :kernel => 'Linux'
   setcode do
-    if system('service xfs status')
+    if system('service xfs status >/dev/null 2>&1')
       'Failed'
     else
       'Passed'

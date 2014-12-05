@@ -1,3 +1,4 @@
+fix_installed_software = []
 Facter.add(:check_installed_software) do
   confine :kernel => 'Linux'
   setcode do
@@ -14,6 +15,7 @@ Facter.add(:check_installed_software) do
       if system("/bin/rpm -q #{package} > /dev/null 2>&1")
         checks[package] = 'Passed'
       else
+        fix_installed_software << package
         checks[package] = 'Failed'
       end
     end
@@ -25,5 +27,12 @@ Facter.add(:check_installed_software) do
       'Passed'
     end
 
+  end
+end
+
+Facter.add(:fix_installed_software) do
+  confine :kernel => 'Linux'
+  setcode do
+    fix_installed_software.join(',')
   end
 end

@@ -1,3 +1,4 @@
+fix_root_login_console = []
 Facter.add(:check_root_login_console) do
   confine :kernel => 'Linux'
   setcode do
@@ -10,6 +11,7 @@ Facter.add(:check_root_login_console) do
           next if line =~ /^#.*$/
           # If the line is matched break out and pass
           if line =~ /^(ttyp|pts).*$/
+            fix_root_login_console << line.chomp
             result = 'Failed'
             break
           end
@@ -20,5 +22,12 @@ Facter.add(:check_root_login_console) do
       # If file does not exist we pass the test
       'Passed'
     end
+  end
+end
+
+Facter.add(:fix_root_login_console) do
+  confine :kernel => 'Linux'
+  setcode do
+    fix_root_login_console.join(',')
   end
 end
