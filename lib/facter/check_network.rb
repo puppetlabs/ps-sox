@@ -1,4 +1,5 @@
 require 'augeas'
+fix_network = []
 Facter.add(:check_network) do
   confine :kernel => 'Linux'
   confine :sox_network => 'enabled'
@@ -27,6 +28,7 @@ Facter.add(:check_network) do
           if aug.get(key) == value
             checks[key] = 'Passed'
           else
+            fix_network << key
             checks[key] = 'Failed'
           end
       end
@@ -37,5 +39,13 @@ Facter.add(:check_network) do
     else
       'Passed'
     end
+  end
+end
+
+Facter.add(:fix_network) do
+  confine :kernel => 'Linux'
+  confine :sox_network => 'enabled'
+  setcode do
+    fix_network.join(',')
   end
 end
