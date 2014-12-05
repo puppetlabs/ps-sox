@@ -16,7 +16,10 @@
 ## This constant should be set to the desired umask to search for. Any 'umask'
 ## line that isn't set to this will cause this fact to report 'Failed'
 ##
+
 UMASK='022'
+
+fix_umasks = []
 
 Facter.add(:check_default_umask) do
   setcode do
@@ -41,6 +44,7 @@ Facter.add(:check_default_umask) do
           ## If there's a 'umask' line that doesn't match our UMASK, fail
           if line =~ /(umask (?!#{UMASK}).*)/
             result = "Failed"
+            fix_umasks << file
             break
           end
         end
@@ -48,5 +52,11 @@ Facter.add(:check_default_umask) do
     end
 
     result
+  end
+end
+
+Facter.add(:fix_default_umask) do
+  setcode do
+    fix_umasks.join(',')
   end
 end
