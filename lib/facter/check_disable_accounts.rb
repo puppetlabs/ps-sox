@@ -50,18 +50,18 @@ Facter.add(:check_disable_accounts) do
       l = `passwd -S #{user.name}`.split
       if l[1] =~ /(NL|LK)/
         checks[user.name] = 'Passed'
-        troubled_accounts << user.name
       else
         checks[user.name] = 'Failed'
+        troubled_accounts << user.name
       end
     end
 
-     ## Return 'failed' if any of the packages are not installed
-     if checks.detect {|k,v| v == 'Failed'}
-       'Failed'
-     else
-       'Passed'
-     end
+   ## Return 'failed' if any of the packages are not installed
+   if checks.detect {|k,v| v == 'Failed'}
+     'Failed'
+   else
+     'Passed'
+   end
 
   end
 end
