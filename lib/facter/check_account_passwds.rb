@@ -16,12 +16,12 @@ Facter.add(:check_account_passwds) do
       end
     end
 
-     ## Return 'failed' if any of the packages are not installed
-     if checks.detect {|k,v| v == 'Failed'}
-       'Failed'
-     else
-       'Passed'
-     end
+    ## Return 'failed' if any of the of the passwords are non-compliant
+    if checks.detect {|k,v| v == 'Failed'}
+      'Failed'
+    else
+      'Passed'
+    end
 
   end
 end
@@ -42,12 +42,12 @@ Facter.add(:check_account_passwds) do
       end
     end
 
-     ## Return 'failed' if any of the packages are not installed
-     if checks.detect {|k,v| v == 'Failed'}
-       'Failed'
-     else
-       'Passed'
-     end
+    ## Return 'failed' if any of the of the passwords are non-compliant
+    if checks.detect {|k,v| v == 'Failed'}
+      'Failed'
+    else
+      'Passed'
+    end
 
   end
 end
