@@ -1,4 +1,5 @@
 Facter.add(:check_sendmail) do
+  confine :sox_network => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     if File.exist? '/etc/mail/sendmail.cf'

@@ -43,6 +43,7 @@ def match_option?(params)
 end
 
 Facter.add(:check_fstab_ndev) do
+  confine :sox_network => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     params = {
@@ -61,6 +62,7 @@ Facter.add(:check_fstab_ndev) do
 end
 
 Facter.add(:check_fstab_nsuid) do
+  confine :sox_network => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     params = {
@@ -78,6 +80,7 @@ Facter.add(:check_fstab_nsuid) do
 end
 
 Facter.add(:check_fstab_ro_mnt) do
+  confine :sox_network => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     # We default to false here as this entry is required even if its not matched

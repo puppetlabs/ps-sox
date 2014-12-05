@@ -1,4 +1,5 @@
 Facter.add(:check_gdm) do
+  confine :sox_network => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     if File.exist? '/etc/X11/gdm/gdm.conf'

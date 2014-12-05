@@ -1,5 +1,6 @@
 check = []
 Facter.add(:check_sulog) do
+  confine :sox_network => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     if File.exist? '/etc/default/su'

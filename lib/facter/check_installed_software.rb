@@ -1,5 +1,6 @@
 fix_installed_software = []
 Facter.add(:check_installed_software) do
+  confine :sox_network => 'enabled'
   confine :kernel => 'Linux'
   setcode do
 
@@ -31,6 +32,7 @@ Facter.add(:check_installed_software) do
 end
 
 Facter.add(:fix_installed_software) do
+  confine :sox_network => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     fix_installed_software.join(',')

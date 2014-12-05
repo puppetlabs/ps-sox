@@ -1,4 +1,5 @@
 Facter.add(:check_root_path) do
+  confine :sox_network => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     path = Facter.value(:path)

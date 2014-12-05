@@ -1,5 +1,6 @@
 require 'augeas'
 Facter.add(:check_gui_login) do
+  confine :sox_network => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     status = 'Failed'

@@ -1,5 +1,6 @@
 require 'augeas'
 Facter.add(:check_singleuser) do
+  confine :sox_network => 'enabled'
   confine :kernel => 'Linux'
   setcode do
     # Assume failure as file must exist with line to pass

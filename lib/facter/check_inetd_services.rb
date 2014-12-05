@@ -52,6 +52,7 @@ services = [
 fix_services = []
 
 Facter.add(:check_inetd_services) do
+  confine :sox_network => 'enabled'
   confine :osfamily => 'RedHat'
   confine :operatingsystemmajrelease => ['2','3','4','5','6']
   setcode do
@@ -79,6 +80,7 @@ end
 
 ## Fact to list the services that are non-compliant as a comma-separated list
 Facter.add(:fix_inetd_services) do
+  confine :sox_network => 'enabled'
   confine :osfamily => 'RedHat'
   confine :operatingsystemmajrelease => ['2','3','4','5','6']
   setcode do
