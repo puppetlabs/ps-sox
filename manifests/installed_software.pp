@@ -1,7 +1,6 @@
 class sox::installed_software (
-  $fixit = true,
+  $fixit = $::sox_fix,
 ) {
-  validate_bool($fixit)
 
   if $fixit {
     $packages = [

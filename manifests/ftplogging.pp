@@ -1,6 +1,6 @@
 ## Reference: http://www.stigviewer.com/stig/red_hat_enterprise_linux_5/2014-04-02/finding/V-845
 class sox::ftplogging (
-  $fixit = true,
+  $fixit = $::sox_fix,
 ) {
 
   tag 'SV-37547r1_rule', '11.1'

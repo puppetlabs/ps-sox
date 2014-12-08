@@ -11,7 +11,7 @@
 ## not consider conditional logic within the file (e.g. bash if statements).
 ##
 class sox::default_umask (
-  $fixit = true,
+  $fixit = $::sox_fix,
 ) {
 
   tag '5.1', 'SV-37350r1_rule'

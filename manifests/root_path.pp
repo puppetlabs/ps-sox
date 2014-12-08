@@ -1,5 +1,5 @@
 class sox::root_path (
-  $fixit = false,
+  $fixit = $::sox_fix,
   $warn  = true,
 ) {
     if $::check_root_path == 'Failed' and $fixit and $warn {

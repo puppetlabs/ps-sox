@@ -1,6 +1,6 @@
 # Manage /etc/auto.misc
 class sox::disable_rmmount(
-  $fixit = false,
+  $fixit = $::sox_fix,
 ) {
   if $fixit {
     augeas { "/etc/auto.misc":

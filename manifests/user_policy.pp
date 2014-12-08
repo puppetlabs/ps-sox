@@ -1,6 +1,6 @@
-# Manage /files/etc/login.defs 
+# Manage /files/etc/login.defs
 class sox::user_policy(
-  $fixit = false,
+  $fixit = $::sox_fix,
 ) {
   if $fixit {
     augeas { "login.defs":

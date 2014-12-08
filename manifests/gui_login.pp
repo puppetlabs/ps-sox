@@ -1,6 +1,6 @@
 # http://www.stigviewer.com/stig/red_hat_enterprise_linux_5/2014-04-02/finding/V-756
 class sox::gui_login(
-  $fixit = false,
+  $fixit = $::sox_fix,
 ) {
   if $fixit {
     augeas { "inittab_3":

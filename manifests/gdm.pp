@@ -1,6 +1,6 @@
 # Add entries to /etc/X11/gdm/gdm.conf
 class sox::gdm(
-  $fixit = false,
+  $fixit = $::sox_fix,
 ) {
 
   # Puppet will fail if this file does not exist

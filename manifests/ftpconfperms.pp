@@ -1,7 +1,7 @@
 ## Ensure the FTP configuration files have restrictive file modes and
 ## root ownership/group
 class sox::ftpconfperms (
-  $fixit = true,
+  $fixit = $::sox_fix,
 ) {
 
   tag '11.2'

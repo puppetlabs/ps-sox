@@ -1,7 +1,7 @@
 # https://forge.puppetlabs.com/fiddyspence/sysctl
 # As this was the sysctl module choosen over augeasproviders its modeled here
 class sox::network(
-    $fixit = false,
+    $fixit = $::sox_fix,
 ) {
 
   if $fixit {

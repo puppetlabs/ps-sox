@@ -1,5 +1,5 @@
 class sox::xfs (
-  $fixit = false,
+  $fixit = $::sox_fix,
 ) {
   if $fixit {
     service {'xfs':

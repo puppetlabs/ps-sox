@@ -1,5 +1,5 @@
 class sox::account_passwds(
-  $fixit = false,
+  $fixit = $::sox_fix,
   $force = false,
   $warn  = true,
 ) {

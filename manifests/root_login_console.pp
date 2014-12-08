@@ -1,6 +1,6 @@
 # Manage /etc/securetty
 class sox::root_login_console(
-  $fixit = false,
+  $fixit = $::sox_fix,
 ) {
   if $fixit {
     augeas { "securetty":

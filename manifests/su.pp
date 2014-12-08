@@ -1,6 +1,6 @@
 # Manage su.conf
 class sox::su(
-  $fixit = false,
+  $fixit = $::sox_fix,
   $warn  = true,
 ) {
   if $::check_su == 'Failed' and $fixit and $warn {

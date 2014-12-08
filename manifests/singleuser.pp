@@ -1,6 +1,6 @@
 # Manage /etc/inittab
 class sox::singleuser(
-  $fixit = false,
+  $fixit = $::sox_fix,
 ) {
   if $fixit {
     augeas { "inittab_su:S:wait:/sbin/sulogin":

@@ -1,5 +1,5 @@
 class sox::sulog (
-  $fixit = false,
+  $fixit = $::sox_fix,
 ) {
 
   if $fixit {

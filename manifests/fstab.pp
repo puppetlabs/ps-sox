@@ -1,6 +1,6 @@
 # define options for various mounts
 class sox::fstab (
-  $fixit = false,
+  $fixit = $::sox_fix,
   $warn  = true,
 ) {
     if $fixit and $warn {

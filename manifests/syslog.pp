@@ -1,6 +1,6 @@
 # Manage /etc/syslog.conf
 class sox::syslog(
-  $fixit = false,
+  $fixit = $::sox_fix,
 ) {
   if $fixit {
 

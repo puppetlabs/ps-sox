@@ -1,5 +1,5 @@
 class sox::loginlog (
-  $fixit = false,
+  $fixit = $::sox_fix,
 ) {
     file {'/var/adm/loginlog':
       ensure => 'file',

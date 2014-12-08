@@ -5,12 +5,11 @@
 ## If a service is tagged with 'investigate', we don't want to "fix" it.
 ##
 class sox::boot_services (
-  $fixit = true,
+  $fixit = $::sox_fix,
   $force = false,
   $warn  = true,
 ) {
 
-  validate_bool($fixit)
   validate_bool($force)
   validate_bool($warn)
 
