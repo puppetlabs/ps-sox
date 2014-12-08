@@ -168,3 +168,4 @@ Once this information is uploaded to puppetdb the following can be used to estab
 https://github.com/dalen/puppet-puppetdbquery#cli
 https://docs.puppetlabs.com/puppetdb/latest/api/query/curl.html
 https://docs.puppetlabs.com/puppetdb/2.2/api/query/v3/facts.html
+https://docs.puppetlabs.com/mcollective/reference/ui/nodereports.html
