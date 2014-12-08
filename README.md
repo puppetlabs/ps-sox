@@ -135,6 +135,13 @@ This can also be done for a given run using the following syntax
 FACTER_sox_fix=true puppet agent -t
 ```
 
+If only a given fix is required/desired using [automatic parameter lookup in hiera](https://docs.puppetlabs.com/hiera/1/puppet.html#automatic-parameter-lookup), the fixes can enabled for just given class
+
+```yaml
+---
+sox::network::fixit: true
+```
+
 This can also be done section by section as well
 The following would compile a partial catalog containing only resources with the tag 13.1 i.e. `sox::disable_rmmount`
 
@@ -142,24 +149,22 @@ The following would compile a partial catalog containing only resources with the
 FACTER_sox_fix=true puppet agent -t --tags '13.1'
 ```
 
-## Reference
-
-Here, list the classes, types, providers, facts, etc contained in your module.
-This section should include all of the under-the-hood workings of your module so
-people know what the module is touching on their system but don't need to mess
-with things. (We are working on automating this section!)
-
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+1. This module currently has only been tested on a RHEL operating system.
+2. Currently there is no coloboration between the fix values and the checked values. It would be possible to refact any of the facts to read data in via yaml files that where managed by the classes.
+3. At the time of this writing not all tags had been migrated to the classes from the configuration (.conf) files
+4. Some puppet code is not idempotent and uses the facts value to achieve idempotentance.
 
-## Development
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
+## Release Notes/Contributors/Etc
 
-## Release Notes/Contributors/Etc **Optional**
+Zack Smith zack@puppetlabs.com
+Josh Beard josh.beard@puppetlabs.com
 
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You may also add any additional sections you feel are
-necessary or important to include here. Please use the `## ` header.
+## Related
+Once this information is uploaded to puppetdb the following can be used to establish reports across all nodes
+
+https://github.com/dalen/puppet-puppetdbquery#cli
+https://docs.puppetlabs.com/puppetdb/latest/api/query/curl.html
+https://docs.puppetlabs.com/puppetdb/2.2/api/query/v3/facts.html
