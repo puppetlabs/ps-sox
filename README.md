@@ -26,7 +26,7 @@ This module requires the following facts
 | Fact name | Expected Values   |
 | --------- | ----------------- |
 | likewise  | missing,installed |
-| dmz       | true,false        |
+| in_dmz    | true,false        |
 
 These facts are need to be provided for the confine calls and were deamed to be too broad to include in this module.
 
