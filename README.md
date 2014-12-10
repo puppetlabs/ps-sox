@@ -53,7 +53,7 @@ Gem/Library requirements Noted solely for information purposes
 
 1. Shipped within this module lib/facter directory
 
-#### Facter Requirements
+#### Manifest (fix) Requirements
 
 This module has the following dependencies on third party modules:
 
