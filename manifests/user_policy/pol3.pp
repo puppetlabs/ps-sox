@@ -2,7 +2,7 @@ define sox::user_policy::pol3 (
     $pamfile = $name,
 ) {
   
-  pam { "set ${pamfile} to use auth pam_tally2.so deny=3 onerr=fail":
+  pam { "set ${pamfile} to use auth required pam_tally2.so deny=3 onerr=fail":
     ensure    => present,
     service   => $pamfile,
     type      => 'auth',
@@ -10,6 +10,7 @@ define sox::user_policy::pol3 (
     module    => 'pam_tally2.so',
     arguments => ['deny=3','onerr=fail'],
     position  => 'before first',
+    #target    => "/etc/pam.d/${pamfile}",
   }
   
   pam { "set ${pamfile} to use account required pam_tally2.so":
@@ -19,6 +20,7 @@ define sox::user_policy::pol3 (
     control  => 'required',
     module   => 'pam_tally2.so',
     position => 'before first',
+    #target   => "/etc/pam.d/${pamfile}",
   }
   
   # # insert new place marker auth include after existing pam_tally2.so then remove it

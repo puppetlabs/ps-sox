@@ -33,7 +33,7 @@ class sox::user_policy(
       ],
       require  => Augeas["/files/etc/pam.d/system-auth/01"],
     }
-    sox::user_policy::pol3 {['/etc/pam.d/sshd','/etc/pam.d/vsftpd','/etc/pam.d/login']:
+    sox::user_policy::pol3 {['sshd','vsftpd','login']:
       tag => 'foo',
     }
   }
