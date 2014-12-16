@@ -1,8 +1,8 @@
-Facter.add(:check_ypserv) do
-  confine :sox_ypserv => 'enabled'
+Facter.add(:check_ypbind) do
+  confine :sox_ypbind => 'enabled'
   confine :kernel => 'Linux'
   setcode do
-    if system('rpm -q ypserv >/dev/null 2>&1')
+    if system('rpm -q ypbind >/dev/null 2>&1')
       'Failed'
     else
       'Passed'

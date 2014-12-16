@@ -12,6 +12,8 @@ class sox::boot_services (
 
   validate_bool($force)
   validate_bool($warn)
+  
+  tag '4.1'
 
   if $::fix_boot_services {
     $services = keys(parsejson($::fix_boot_services))

@@ -2,6 +2,9 @@
 class sox::user_policy(
   $fixit = $::sox_fix,
 ) {
+  
+  tag 'SV-50298r1_rule', '15.3'
+  
   if $fixit {
     augeas { "login.defs":
       context => "/files/etc/login.defs",

@@ -2,13 +2,15 @@
 class sox::gui_login(
   $fixit = $::sox_fix,
 ) {
+  
+  tag 'SV-37350r1_rule', '7.1'
+  
   if $fixit {
     augeas { "inittab_3":
       context => "/files/etc/inittab/id",
       changes => [
         "set runlevels 3",
       ],
-      tag => 'SV-37350r1_rule',
     }
   }
 }

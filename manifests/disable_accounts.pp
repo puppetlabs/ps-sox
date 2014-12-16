@@ -3,6 +3,9 @@ class sox::disable_accounts(
   $force = false,
   $warn  = true,
 ) {
+  
+  tag 'SV-50297r2_rule', '15.1'
+  
   if $fixit {
     # Extract the fact as puppet array so it can create the resource below
     $users = split($::fix_disable_accounts,',')

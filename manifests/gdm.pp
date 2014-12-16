@@ -2,6 +2,8 @@
 class sox::gdm(
   $fixit = $::sox_fix,
 ) {
+  
+  tag 'CCE-27230-2', '14.3'
 
   # Puppet will fail if this file does not exist
   # The fact makes this idempotant
