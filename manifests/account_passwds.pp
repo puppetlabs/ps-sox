@@ -3,6 +3,9 @@ class sox::account_passwds(
   $force = false,
   $warn  = true,
 ) {
+  
+  tag 'SV-50298r1_rule', '15.2'
+  
   if $fixit {
     # Extract the fact as puppet array so it can create the resource below
     $users = split($::fix_account_passwds,',')

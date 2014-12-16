@@ -4,6 +4,18 @@ class sox::network(
     $fixit = $::sox_fix,
 ) {
 
+  $tags = [
+    'SV-50324r1_rule',
+    'SV-50325r1_rule',
+    'SV-50327r1_rule',
+    'SV-50330r1_rule',
+    'SV-50336r1_rule',
+    'SV-50340r1_rule',
+    '9.1'
+  ]
+  
+  tags $tags
+
   if $fixit {
     Sysctl {
       ensure     => 'present',

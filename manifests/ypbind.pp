@@ -1,11 +1,11 @@
-class sox::xfs (
+class sox::ypbind (
   $fixit = $::sox_fix,
 ) {
   
-  tag '8.1'
+  tag 'SV-50405r2_rule'
   
   if $fixit {
-    service {'xfs':
+    service{ 'ypbind':
       ensure => stopped,
       enable => false,
     }

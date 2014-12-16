@@ -2,6 +2,9 @@
 class sox::user_policy(
   $fixit = $::sox_fix,
 ) {
+  
+  tag 'SV-50298r1_rule', '15.3'
+  
   if $fixit {
     augeas { "login.defs":
       context => "/files/etc/login.defs",
@@ -33,7 +36,7 @@ class sox::user_policy(
       ],
       require  => Augeas["/files/etc/pam.d/system-auth/01"],
     }
-    sox::user_policy::pol3 {['/etc/pam.d/sshd','/etc/pam.d/vsftpd','/etc/pam.d/login']:
+    sox::user_policy::pol3 {['sshd','vsftpd','login']:
       tag => 'foo',
     }
   }

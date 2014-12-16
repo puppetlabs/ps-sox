@@ -8,7 +8,7 @@ class sox::disable_rmmount(
       changes => [
         "rm *[.=~ regexp('^(ttyp|pts).*$')]",
       ],
-      tags => '13.3',
+      tag => '13.3',
     }
   }
 }

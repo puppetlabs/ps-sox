@@ -2,6 +2,9 @@
 class sox::keyserv(
   $fixit = $::sox_fix,
 ) {
+  
+  tag 'SV-60961r1_rule','14.5'
+  
   if $::check_keyserv == 'Failed' and $fixit {
     shellvar { '/etc/default/keyserv:ENABLE_NOBODY_KEYS=NO':
       ensure   => present,

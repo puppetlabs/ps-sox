@@ -2,6 +2,9 @@
 class sox::syslog(
   $fixit = $::sox_fix,
 ) {
+  
+  tag 'CCI-000126', '10.1'
+  
   if $fixit {
 
     # Ensure the service is in the catalog if this an apply

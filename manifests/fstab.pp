@@ -3,6 +3,9 @@ class sox::fstab (
   $fixit = $::sox_fix,
   $warn  = true,
 ) {
+  
+    tag 'SV-50455r2_rule', 'SV-50453r2_rule', '13.1', '13.2'
+  
     if $fixit and $warn {
         notify {"${name}: Automatic fix not available, please fix manually":}
     }
